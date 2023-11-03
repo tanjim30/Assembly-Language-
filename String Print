@@ -1,0 +1,16 @@
+.model small
+.stack 100h
+.data
+x db 'I am Tanjim Mohammad Mubarrat $'
+
+.code 
+
+ mian proc
+    mov ax,@data
+    mov ds,ax 
+    
+    mov ah,9
+    lea dx,x
+    int 21h
+    
+    
