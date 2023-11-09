@@ -1,0 +1,36 @@
+.model small
+.stack 100h
+.data
+
+a db "hello!! $"
+b db "I am $"
+c db "Do not want to print $"
+d db "Tanjim Mohammad Mubarrat $"
+
+.code
+
+mian proc
+    mov ax,@data
+    mov ds,ax
+    
+    mov ah,9
+    lea dx,a
+    int 21h
+    
+    x:
+    mov ah,9
+    lea dx,b
+    int 21h 
+    jmp z
+    
+    
+    y:
+    mov ah,9
+    lea dx,c
+    int 21h 
+    
+    z:
+    mov ah,9
+    lea dx,d
+    int 21h 
+     
