@@ -1,0 +1,78 @@
+.MODEL SMALL
+ .STACK 100H
+
+ .DATA
+   P_1   DB  'Enter the first letter : $'
+   P_2   DB  'Enter the second letter : $'
+   P_3   DB  'The given letters in alphabetical order are : $'
+   N_L  DB  0DH,0AH,"$"
+
+ .CODE
+   MAIN PROC
+     MOV AX, @DATA                
+     MOV DS, AX
+
+     MOV AH,2                   
+     MOV DL,"?"
+     INT 21H
+
+     MOV AH,9                   
+
+     LEA DX,N_L           
+     INT 21H
+
+     LEA DX,P_1            
+     INT 21H
+
+     MOV AH,1                   
+     INT 21H                      
+
+     MOV BL,AL                   
+
+     MOV AH,9                    
+
+     LEA DX,N_L            
+     INT 21H
+
+     LEA DX,P_2             
+     INT 21H
+
+     MOV AH,1                    
+     INT 21H                     
+
+     MOV BH,AL                  
+
+     MOV AH,9                   
+
+     LEA DX,N_L           
+     INT 21H
+
+     LEA DX,P_3             
+     INT 21H
+
+     MOV AH,2                   
+
+     CMP BL,BH
+
+     JAE @CONDITION
+       MOV DL, BL
+       INT 21H
+
+       MOV DL, BH
+       INT 21H
+
+       JMP EXIT
+
+     @CONDITION:
+       MOV DL, BH
+       INT 21H
+
+       MOV DL, BL
+       INT 21H
+
+     
+     EXIT:
+     MOV AH, 4CH                 
+     INT 21H
+   MAIN ENDP
+END MAIN
